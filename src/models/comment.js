@@ -3,18 +3,15 @@ import Joi from "joi";
 
 const commentSchema = new Schema({
    post: { type: Schema.Types.ObjectId, ref: "Post" },
-   comment: {
-      user: { type: Schema.Types.ObjectId, ref: "User" },
-      comment: { type: String, max: 400 },
-      date: Date.now,
-   },
+   comments: [{ user: { type: Schema.Types.ObjectId, ref: "User" }, text: String }],
 });
 
 export const commentValidate = (post) => {
    return Joi.object({
-      user: Joi.required().min(20).max(28),
-      text: Joi.min(10).max(600),
+      post: Joi.string().min(20).max(28).required(),
+      user: Joi.string().min(20).max(28).required(),
+      text: Joi.string().min(10).max(600).required(),
    }).validate(post);
 };
 
-const Comment = mongoose.model("Comment", commentSchema);
+export const Comment = mongoose.model("Comment", commentSchema);

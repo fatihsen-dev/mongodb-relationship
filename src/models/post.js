@@ -12,7 +12,7 @@ const postSchema = new Schema(
       },
       comments: {
          count: { type: Number, default: 0 },
-         comment: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
+         comment: { type: Schema.Types.ObjectId, ref: "Comment" },
       },
    },
    { timestraps: true }
@@ -22,6 +22,13 @@ export const postValidate = (post) => {
    return Joi.object({
       user: Joi.string().required(),
       text: Joi.string().min(10).max(600).required(),
+   }).validate(post);
+};
+
+export const likeValidate = (post) => {
+   return Joi.object({
+      user: Joi.string().min(20).max(28).required(),
+      post: Joi.string().min(20).max(28).required(),
    }).validate(post);
 };
 
