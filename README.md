@@ -13,5 +13,5 @@
 
 ### Example .env file
 ```
-DB_URL=mongodb+srv://<username>:<password>@fatihsen.vemqpg7.mongodb.net/relationships?retryWrites=true&w=majority
+DB_URL=mongodb://[username:password@]host1[:port1][,...hostN[:portN]][/[defaultauthdb][?options]]
 ```
